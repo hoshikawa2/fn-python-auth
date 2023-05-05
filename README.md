@@ -5,4 +5,4 @@ Esta é a configuração do API Gateway para receber o token JWT
 ![3](./images/API-Gateway-3.png)
 
 O teste pode ser feito via Postman
-![4](./images/Postman.png)
+![4](./images/Postman1.png)
