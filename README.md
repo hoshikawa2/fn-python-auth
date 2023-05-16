@@ -1,4 +1,7 @@
 
+Esta demo foi baseada no material oficial de documentação da Oracle Cloud:
+[Passing Tokens to Authorizer Functions to Add Authentication and Authorization to API Deployments](https://docs.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayusingauthorizerfunction.htm)
+
 Esta é a configuração do API Gateway para receber o token JWT
 ![1](./images/API-Gateway-1.png)
 ![2](./images/API-Gateway-2.png)
