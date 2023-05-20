@@ -150,7 +150,7 @@ The next code stablishes an expiration date and time for the **Object Storage** 
 ```
 
 Now, we need to initialize the **OCI Object Storage framework** based on the credentials saved in the **OCI CLI** installation.
-Save the **~/.oci/config** in this **fn** project. 
+The OCI CLI configuration uses the **~/.oci/config** and the certificate **.pem** file. So you can install OCI CLI locally and configure a user to access the Object Storage (see the OCI documentation to install OCI CLI and the Object Storage policies in the References section) and then, copy these 2 files into this **fn** project. 
 
 ```python
         config = oci.config.from_file("config")
@@ -290,3 +290,5 @@ You can configure the dashboard query like this:
 * [Creating Your First API Gateway In The Oracle Cloud](https://blogs.oracle.com/developers/post/creating-your-first-api-gateway-in-the-oracle-cloud)
 * [Object Storage Metrics](https://docs.oracle.com/pt-br/iaas/Content/Object/Reference/objectstoragemetrics.htm)
 * [Monitoring Query Language (MQL) Reference](https://docs.oracle.com/pt-br/iaas/Content/Monitoring/Reference/mql.htm)
+* [Object Storage Security](https://docs.oracle.com/en-us/iaas/Content/Security/Reference/objectstorage_security.htm)
+* [Install the OCI CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm)
