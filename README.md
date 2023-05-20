@@ -135,7 +135,11 @@ def handler(ctx, data: io.BytesIO = None):
 
 ```
 
-This is the **OCI APM Console** view for the code:
+This is the **OCI APM Console** view for the code.
+And you can find your files with queries like:
+
+- **ServiceName** = 'Status: Load File' and **OperationName** = '50 - DR-HA OIC.pdf'
+
 
 ![zipkin-oci](./images/zipkin-oci.png)
 
@@ -265,6 +269,18 @@ You can download the file following the example:
 
     https://objectstorage.us-ashburn-1.oraclecloud.com/p/eL5C0R0luN_cTNn-vUF7_Dx_z2N4w7IXemKr5y61cSRxZZPRXcR2Yj1dNCaJBDK8/n/idavixsf5sbx/b/data/o/calico.yaml
 
+### Observability
+
+Basically, every OCI resource can show metrics in a dashboard and many events on these resources can trigger an action.
+So, in this demo, you can configure a dashboard to show how many files have been written or read on the Object Storage:
+
+![Observability](./images/dashboard.png)
+
+You can configure the dashboard query like this:
+
+- Bucket Files = **ObjectCount[1d].groupby(resourceID).count()**
+- Bucket Writes = **PutRequests[5m].grouping().count()**
+- Bucket Reads = **GetRequests[5m].grouping().count()**
 
 ### References
 * [Passing Tokens to Authorizer Functions to Add Authentication and Authorization to API Deployments](https://docs.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayusingauthorizerfunction.htm)
