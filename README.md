@@ -124,6 +124,8 @@ def handler(ctx, data: io.BytesIO = None):
 
 ### Review the code
 
+This part of code saves a status position in **OCI Observability**. It uses **Zipkin** framework to publish into **OCI APM Observability**
+
 ```python
 @zipkin_span(service_name='statusGetFile', span_name='statusGetFile')
 def handler(ctx, data: io.BytesIO = None):
@@ -138,15 +140,30 @@ def handler(ctx, data: io.BytesIO = None):
 
 ```
 
+This is the **OCI APM Console** view for the code:
+
+![zipkin-oci](./images/zipkin-oci.png)
+
+The next code stablishes an expiration date and time for the **Object Storage** file. A pre-authenticate will be generated and the attribute **expiresAt** will be used for this objective. 
+
 ```python
         expiresAt = (datetime.datetime.utcnow() + timedelta(seconds=60)).replace(tzinfo=datetime.timezone.utc).astimezone().replace(microsecond=0).isoformat()
 ```
+
+Now, we need to initialize the **OCI Object Storage framework** based on the credentials saved in the **OCI CLI** installation.
+Save the **~/.oci/config** in this **fn** project. 
 
 ```python
         config = oci.config.from_file("config")
         object_storage = oci.object_storage.ObjectStorageClient(config)
         namespace = object_storage.get_namespace().data
 ```
+
+The next step will get from the **Body** parameters values: **secretID**, **clientID** and **objectID**.
+
+    #secretID = the IDCS secretID from the application created to validate the JWT Token
+    #clientID = the IDCS clientID from the application created to validate the JWT Token
+    #objectID = the file name in the Object Storage 
 
 ```python
         try:
@@ -156,6 +173,8 @@ def handler(ctx, data: io.BytesIO = None):
             objectID = auth_token.get("objectID")
 ```
 
+A pre-authenticated **URL** will be generated in this part of code. The variable **bucket_name** contains the name of the bucket in the **Object Storage** created previously and **time_expires** represents the date and time expiration to download the file.
+
 ```python
             details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name=objectID, access_type="ObjectRead", object_name=objectID, time_expires=expiresAt)
 
@@ -163,6 +182,8 @@ def handler(ctx, data: io.BytesIO = None):
             preauthstr = str(preauth.data)
 
 ```
+
+This part of code calls the **IDCS** to validate **clientID** and **secretID** to obtain the **JWT** token. A JWT can be decoded into a JSON string, in this case, without signature, but the signature can be verified easily with a certificate. 
 
 ```python
             auth = clientID + ":" + secretID
@@ -183,6 +204,8 @@ def handler(ctx, data: io.BytesIO = None):
             jwtTokenDecoded = jwt.decode(post_response.json()['access_token'], options={"verify_signature": False})
 
 ```
+
+This is the final part, where all the data will be returned with code **200**. You can return all the information needed to your application and these part of code validates the authentication or not, resulting in code 200 (authorized/success) or 401 (unauthorized).
 
 ```python
             return response.Response(
@@ -205,3 +228,10 @@ def handler(ctx, data: io.BytesIO = None):
 
 ```
 
+### Test the API Gateway Deployment
+
+```bash
+curl --location 'https://cihjkhlijtmunsiiokgrhetowu.apigateway.us-ashburn-1.oci.customer-oci.com/dummyauthorizer/' \
+--header 'Content-Type: text/plain' \
+--data '{"clientID": "e3e5160e2f584e52a0ffb9fa4785fc2f", "secretID": "8ed5582d-fa5e-49cf-806c-f793927b0687", "objectID": "calico.yaml"}'
+```
