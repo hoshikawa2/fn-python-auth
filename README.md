@@ -230,8 +230,26 @@ This is the final part, where all the data will be returned with code **200**. Y
 
 ### Test the API Gateway Deployment
 
+You can test the application with **CURL** or in **Postman**:
+
 ```bash
 curl --location 'https://cihjkhlijtmunsiiokgrhetowu.apigateway.us-ashburn-1.oci.customer-oci.com/dummyauthorizer/' \
 --header 'Content-Type: text/plain' \
 --data '{"clientID": "e3e5160e2f584e52a0ffb9fa4785fc2f", "secretID": "8ed5582d-fa5e-49cf-806c-f793927b0687", "objectID": "calico.yaml"}'
 ```
+
+![postman-test](./images/postman-test.png)
+
+If everything is OK, you can see the success code 200:
+
+![success-result](./images/success-result.png)
+
+An **URL** for the pre-authenticated Object Storage will be generated and you can download the file for the next 60 seconds.
+You can download the file following the example:
+
+    https://objectstorage.us-ashburn-1.oraclecloud.com + access_url
+
+    or
+
+    https://objectstorage.us-ashburn-1.oraclecloud.com/p/eL5C0R0luN_cTNn-vUF7_Dx_z2N4w7IXemKr5y61cSRxZZPRXcR2Yj1dNCaJBDK8/n/idavixsf5sbx/b/data/o/calico.yaml
+
