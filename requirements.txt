@@ -1,3 +1,6 @@
 fdk>=0.1.54
 pyjwt
-
+requests
+pybase64
+oci
+py_zipkin
