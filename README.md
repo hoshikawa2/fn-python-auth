@@ -2,12 +2,13 @@
 Esta demo foi baseada no material oficial de documentação da Oracle Cloud:
 [Passing Tokens to Authorizer Functions to Add Authentication and Authorization to API Deployments](https://docs.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayusingauthorizerfunction.htm)
 
-Esta é a configuração do API Gateway para receber o token JWT
+### Configure the OCI API Gateway to authenticate with fn
 ![1](./images/API-Gateway-1.png)
 ![2](./images/API-Gateway-2.png)
 ![3](./images/API-Gateway-3.png)
 
-No OCI IDCS, a aplicação deve ser configurada dessa forma:
+### Configure an application in IDCS
+
 ![5](./images/IDCS-App.png)
 
 ### O teste pode ser feito via Postman
@@ -144,7 +145,7 @@ This is the **OCI APM Console** view for the code:
 
 ![zipkin-oci](./images/zipkin-oci.png)
 
-The next code stablishes an expiration date and time for the **Object Storage** file. A pre-authenticate will be generated and the attribute **expiresAt** will be used for this objective. 
+The next code stablishes an expiration date and time for the **Object Storage** file. A pre-authenticate will be generated and the attribute **expiresAt** will be used for this objective. **timedelta** add 60 seconds from the current time for downloading the file.
 
 ```python
         expiresAt = (datetime.datetime.utcnow() + timedelta(seconds=60)).replace(tzinfo=datetime.timezone.utc).astimezone().replace(microsecond=0).isoformat()
