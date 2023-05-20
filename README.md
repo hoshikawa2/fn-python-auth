@@ -246,7 +246,7 @@ If everything is OK, you can see the success code 200:
 An **URL** for the pre-authenticated Object Storage will be generated and you can download the file for the next 60 seconds.
 You can download the file following the example:
 
-    https://objectstorage.us-ashburn-1.oraclecloud.com + access_url
+    https://objectstorage.us-ashburn-1.oraclecloud.com + access_uri
 
     or
 
