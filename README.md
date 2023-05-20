@@ -1,3 +1,15 @@
+# Use Oracle Cloud API Gateway to create a secure Object Storage download service with a function authentication
+
+### Introduction
+
+
+
+### Pre-Requisites
+
+You need:
+- Have an OCI tenant configured and active
+- Knowledge in OCI Functions (the example was implemented in Python, see the References section to configure fn and policies)
+- Knowledge in OCI API Gateway (there is a tutorial in References section to configure policies and intance for the API Gateway)
 
 ### Review the code
 
@@ -258,3 +270,4 @@ You can download the file following the example:
 * [Create a JWT Token in Java for Oracle IDCS](https://www.ateam-oracle.com/post/create-a-jwt-token-in-java-for-oracle-idcs)
 * [Functions QuickStart Guides](https://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsquickstartguidestop.htm)
 * [Oracle Functions Samples](https://github.com/oracle-samples/oracle-functions-samples)
+* [Creating Your First API Gateway In The Oracle Cloud](https://blogs.oracle.com/developers/post/creating-your-first-api-gateway-in-the-oracle-cloud)
