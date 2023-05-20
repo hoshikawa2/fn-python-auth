@@ -55,12 +55,12 @@ def handler(ctx, data: io.BytesIO = None):
 
             headers = {"Authorization": "Basic " + auth_base64_message, "Content-Type": "application/x-www-form-urlencoded"}
 
-            scope = "cihjkhlijtmunsiiokgrhetowu.apigateway.us-ashburn-1.oci.customer-oci.com/super-scope"
+            scope = "xxxxxxxxxxxxxxxxxxxx.apigateway.us-ashburn-1.oci.customer-oci.com/super-scope"
             grant_type = "client_credentials"
 
             body = {"scope": scope, "grant_type": grant_type}
 
-            url_post = "https://idcs-4fb47b9161304b1da26f6ed1619a4e09.identity.oraclecloud.com/oauth2/v1/token"
+            url_post = "https://idcs-xxxxxxxxxxxxxxxxxxxxxxx.identity.oraclecloud.com/oauth2/v1/token"
             post_response = requests.post(url_post, headers=headers, data=body)
 
             jwtTokenDecoded = jwt.decode(post_response.json()['access_token'], options={"verify_signature": False})
