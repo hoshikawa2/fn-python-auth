@@ -267,11 +267,15 @@ If everything is OK, you can see the success code 200:
 An **URL** for the pre-authenticated Object Storage will be generated and you can download the file for the next 60 seconds.
 You can download the file following the example:
 
-    https://objectstorage.us-ashburn-1.oraclecloud.com + access_uri
+    https://objectstorage.us-ashburn-1.oraclecloud.com + [access_uri]
 
     or
 
     https://objectstorage.us-ashburn-1.oraclecloud.com/p/eL5C0R0luN_cTNn-vUF7_Dx_z2N4w7IXemKr5y61cSRxZZPRXcR2Yj1dNCaJBDK8/n/idavixsf5sbx/b/data/o/calico.yaml
+
+    So you can download your file with this command line:
+
+    wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/eL5C0R0luN_cTNn-vUF7_Dx_z2N4w7IXemKr5y61cSRxZZPRXcR2Yj1dNCaJBDK8/n/idavixsf5sbx/b/data/o/calico.yaml
 
 ### Observability
 
