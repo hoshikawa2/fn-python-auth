@@ -22,11 +22,13 @@ You need:
 - Knowledge in OCI Functions (the example was implemented in Python, see the References section to configure fn and policies)
 - Knowledge in OCI API Gateway (there is a tutorial in References section to configure policies and intance for the API Gateway)
 
-### Review the code
+### Task 1: Review the code
 
 This is the entire function python code used in an API Gateway deployment to 
 
 * Authorize a pre-authenticate link to download a file in the Object Storage
+
+You can download the Python code here: [Python fn Project](./python-demo-fn-code.zip)
 
 ```python
 import io
@@ -237,7 +239,7 @@ This is the final part, where all the data will be returned with code **200**. Y
 
 ```
 
-### Configure the OCI API Gateway to authenticate with fn
+### Task 2: Configure the OCI API Gateway to authenticate with fn
 
 OCI API Gateway can deploy an API as a OCI function. As you saw previously, the code uses the **body** containing **clientID**, **secretID** and **objectID** information passed by API Gateway configuration. You can configure your deployment:
 
@@ -245,7 +247,7 @@ OCI API Gateway can deploy an API as a OCI function. As you saw previously, the 
 ![2](./images/API-Gateway-2.png)
 ![3](./images/API-Gateway-3.png)
 
-### Configure an application in IDCS
+### Task 3: Configure an application in IDCS
 
 You can configure any REST API External Identity Provider to work with JWT like **Auth0** and **OCI IDCS**. 
 In this demo, we will work with **OCI IDCS** and call the authentication inside the function.
@@ -257,7 +259,7 @@ Save and activate your application. You can get the **clientID** and **secretID*
 
 ![client-secret](./images/client-secret.png)
 
-### Test the API Gateway Deployment
+### Task 4: Test the API Gateway Deployment
 
 You can test the application with **CURL** or in **Postman**:
 
@@ -286,7 +288,7 @@ You can download the file following the example:
 
     wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/eL5C0R0luN_cTNn-vUF7_Dx_z2N4w7IXemKr5y61cSRxZZPRXcR2Yj1dNCaJBDK8/n/idavixsf5sbx/b/data/o/calico.yaml
 
-### Observability
+### Task 5: Observability
 
 Basically, every OCI resource can show metrics in a dashboard and many events on these resources can trigger an action.
 So, in this demo, you can configure a dashboard to show how many files have been written or read on the Object Storage:
