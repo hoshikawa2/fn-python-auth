@@ -20,7 +20,7 @@ You need:
 - An operational Oracle Cloud tenant: You can create a free Oracle Cloud account with US$ 300.00 for a month to try this tutorial. See [Create a Free Oracle Cloud Account](https://www.oracle.com/cloud/free/)
 - OCI CLI (Oracle Cloud Command Line Interface) installed on your local machine: This is the link to install the [OCI CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm).
 - An OCI Functions and the Policies configured for development (the example was implemented in Python, see the References section to configure fn and policies)
-- An OCI API Gateway instance created and exposed to the Internet (there is a tutorial in References section to configure policies and intance for the API Gateway)
+- An OCI API Gateway instance created and exposed to the Internet (there is a tutorial in References section to configure policies and instance for the API Gateway)
 - Access to your OCI IDCS
 
 ### Task 1: Review the code
