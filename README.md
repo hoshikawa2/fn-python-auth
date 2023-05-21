@@ -72,10 +72,6 @@ def handler(ctx, data: io.BytesIO = None):
             clientID = auth_token.get("clientID")
             objectID = auth_token.get("objectID")
 
-            #get_obj = object_storage.get_object(namespace, "data", objectID)
-            #objb64 = base64.b64encode(get_obj.data.content)
-            #objstr = objb64.decode('utf-8')
-
             details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name=objectID, access_type="ObjectRead", object_name=objectID, time_expires=expiresAt)
 
             preauth = object_storage.create_preauthenticated_request(namespace_name=namespace, bucket_name="data", create_preauthenticated_request_details=details)
@@ -98,11 +94,6 @@ def handler(ctx, data: io.BytesIO = None):
 
             jwtTokenDecoded = jwt.decode(post_response.json()['access_token'], options={"verify_signature": False})
 
-            #return response.Response(
-            #    ctx,
-            #    status_code=200,
-            #    response_data=json.dumps({"active": True, "principal": "foo", "scope": "bar", "clientId": "1234", "expiresAt": expiresAt, "context": {"username": "wally", "token": post_response.json()['access_token'], "jwtTokenDecoded": jwtTokenDecoded, "object": objstr}})
-            # )
             return response.Response(
                 ctx,
                 status_code=200,
