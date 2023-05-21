@@ -22,8 +22,8 @@ You need:
 - An OCI Object Storage bucket created and configured with policies you need to write and read files (see in the References section [Object Storage Security](https://docs.oracle.com/en-us/iaas/Content/Security/Reference/objectstorage_security.htm))
 - An operational Oracle Cloud tenant: You can create a free Oracle Cloud account with US$ 300.00 for a month to try this tutorial. See [Create a Free Oracle Cloud Account](https://www.oracle.com/cloud/free/)
 - OCI CLI (Oracle Cloud Command Line Interface) installed on your local machine: This is the link to install the [OCI CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm).
-- An OCI Functions and the Policies configured for development (the example was implemented in Python, see the References section to configure fn and policies)
-- An OCI API Gateway instance created and exposed to the Internet (there is a tutorial in References section to configure policies and instance for the API Gateway)
+- An OCI Functions and the Policies configured for development (the example was implemented in Python, see the References section to configure fn and policies in [Functions QuickStart Guides](https://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsquickstartguidestop.htm))
+- An OCI API Gateway instance created and exposed to the Internet (there is a tutorial in References section to configure policies and instance for the API Gateway in [Creating Your First API Gateway In The Oracle Cloud](https://blogs.oracle.com/developers/post/creating-your-first-api-gateway-in-the-oracle-cloud))
 - Access to your OCI IDCS
 
 ### Task 1: Configure an application in IDCS
