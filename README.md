@@ -5,6 +5,8 @@
 Oracle Cloud Object Storage is a very cheap and effective way to store large or small files. Furthermore, Object Storage allows working in an Event-Driven architecture, making the process execution near to real-time. You can configure events in Object Storage to trigger events, and you can also create REST services to securely, quickly, and inexpensively write to or read files from Object Storage.
 In our demo, we will show how to configure Oracle API Gateway to implement a REST service through a function that allows, in a flexible way, to authenticate a JWT token through an external Identity Provider or the OCI itself (IDCS). Regardless of the process, you can validate the JWT token (since an attribute can be part of the file name), use OCI services through its SDK and other customizable processes. 
 
+![Architecture](./images/architecture.png)
+
 ### Objectives
 
 The objective of this demo is:
@@ -307,6 +309,7 @@ You can configure the dashboard query like this:
 * [Create a JWT Token in Java for Oracle IDCS](https://www.ateam-oracle.com/post/create-a-jwt-token-in-java-for-oracle-idcs)
 * [Object Storage Metrics](https://docs.oracle.com/pt-br/iaas/Content/Object/Reference/objectstoragemetrics.htm)
 * [Monitoring Query Language (MQL) Reference](https://docs.oracle.com/pt-br/iaas/Content/Monitoring/Reference/mql.htm)
+* [Protect Apis with API Gateway using IDCS/IAM JWT with Scopes and Claims](https://blogs.oracle.com/coretec/post/protect-apis-with-api-gateway-using-idcsiam-jwt-with-scopes-and-claims)
 
 ### Acknowledgments
 
