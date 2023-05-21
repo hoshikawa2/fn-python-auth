@@ -25,7 +25,20 @@ You need:
 - An OCI API Gateway instance created and exposed to the Internet (there is a tutorial in References section to configure policies and instance for the API Gateway)
 - Access to your OCI IDCS
 
-### Task 1: Review the code
+### Task 1: Configure an application in IDCS
+
+You can configure any REST API External Identity Provider to work with JWT like **Auth0** and **OCI IDCS**.
+In this demo, we will work with **OCI IDCS** and call the authentication inside the function.
+Basically, you need to create an Application in the IDCS, in the example, called **my-client-app**. You need to select **Client Credentials** and **JWT Assertion** options.
+Visit the References section [Protect Apis with API Gateway using IDCS/IAM JWT with Scopes and Claims](https://blogs.oracle.com/coretec/post/protect-apis-with-api-gateway-using-idcsiam-jwt-with-scopes-and-claims) to view how to configure with more details. 
+
+![5](./images/IDCS-App.png)
+
+Save and activate your application. You can get the **clientID** and **secretID** to use in the next section.
+
+![client-secret](./images/client-secret.png)
+
+### Task 2: Review the code
 
 This is the entire function python code used in an API Gateway deployment to 
 
@@ -233,7 +246,7 @@ return response.Response(
 
 ```
 
-### Task 2: Configure the OCI API Gateway to authenticate with fn
+### Task 3: Configure the OCI API Gateway to authenticate with fn
 
 OCI API Gateway can deploy an API as a OCI function. As you saw previously, the code uses the **body** containing **clientID**, **secretID** and **objectID** information passed by API Gateway configuration. You can configure your deployment:
 
@@ -244,18 +257,6 @@ OCI API Gateway can deploy an API as a OCI function. As you saw previously, the 
 After save your deployment, you can get the REST endpoint here. Remember that the complete endpoint for your Object Storage REST API service is this endpoint plus the "/" at the end (you declared / as your path previously)
 
 ![api-endpoint](./images/api-endpoint.png)
-
-### Task 3: Configure an application in IDCS
-
-You can configure any REST API External Identity Provider to work with JWT like **Auth0** and **OCI IDCS**. 
-In this demo, we will work with **OCI IDCS** and call the authentication inside the function.
-Basically, you need to create an Application in the IDCS, in the example, called **my-client-app**. You need to select **Client Credentials** and **JWT Assertion** options.
-
-![5](./images/IDCS-App.png)
-
-Save and activate your application. You can get the **clientID** and **secretID** to use in the next section.
-
-![client-secret](./images/client-secret.png)
 
 ### Task 4: Test the API Gateway Deployment
 
