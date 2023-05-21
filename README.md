@@ -244,6 +244,9 @@ Basically, you need to create an Application in the IDCS, in the example, called
 
 ![5](./images/IDCS-App.png)
 
+Save and activate your application. You can get the **clientID** and **secretID** to use in the next section.
+
+![client-secret](./images/client-secret.png)
 
 ### Test the API Gateway Deployment
 
