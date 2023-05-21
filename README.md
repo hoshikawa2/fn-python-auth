@@ -158,16 +158,16 @@ And you can find your files with queries like:
 The next code stablishes an expiration date and time for the **Object Storage** file. A pre-authenticate will be generated and the attribute **expiresAt** will be used for this objective. **timedelta** add 60 seconds from the current time for downloading the file.
 
 ```python
-        expiresAt = (datetime.datetime.utcnow() + timedelta(seconds=60)).replace(tzinfo=datetime.timezone.utc).astimezone().replace(microsecond=0).isoformat()
+expiresAt = (datetime.datetime.utcnow() + timedelta(seconds=60)).replace(tzinfo=datetime.timezone.utc).astimezone().replace(microsecond=0).isoformat()
 ```
 
 Now, we need to initialize the **OCI Object Storage framework** based on the credentials saved in the **OCI CLI** installation.
 The OCI CLI configuration uses the **~/.oci/config** and the certificate **.pem** file. So you can install OCI CLI locally and configure a user to access the Object Storage (see the OCI documentation to install OCI CLI and the Object Storage policies in the References section) and then, copy these 2 files into this **fn** project. 
 
 ```python
-        config = oci.config.from_file("config")
-        object_storage = oci.object_storage.ObjectStorageClient(config)
-        namespace = object_storage.get_namespace().data
+config = oci.config.from_file("config")
+object_storage = oci.object_storage.ObjectStorageClient(config)
+namespace = object_storage.get_namespace().data
 ```
 
 The next step will get from the **Body** parameters values: **secretID**, **clientID** and **objectID**.
@@ -177,63 +177,63 @@ The next step will get from the **Body** parameters values: **secretID**, **clie
     #objectID = the file name in the Object Storage 
 
 ```python
-        try:
-            auth_token = json.loads(data.getvalue())
-            secretID = auth_token.get("secretID")
-            clientID = auth_token.get("clientID")
-            objectID = auth_token.get("objectID")
+try:
+    auth_token = json.loads(data.getvalue())
+    secretID = auth_token.get("secretID")
+    clientID = auth_token.get("clientID")
+    objectID = auth_token.get("objectID")
 ```
 
 A pre-authenticated **URL** will be generated in this part of code. The variable **bucket_name** contains the name of the bucket in the **Object Storage** created previously and **time_expires** represents the date and time expiration to download the file.
 
 ```python
-            details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name=objectID, access_type="ObjectRead", object_name=objectID, time_expires=expiresAt)
+details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name=objectID, access_type="ObjectRead", object_name=objectID, time_expires=expiresAt)
 
-            preauth = object_storage.create_preauthenticated_request(namespace_name=namespace, bucket_name="data", create_preauthenticated_request_details=details)
-            preauthstr = str(preauth.data)
+preauth = object_storage.create_preauthenticated_request(namespace_name=namespace, bucket_name="data", create_preauthenticated_request_details=details)
+preauthstr = str(preauth.data)
 
 ```
 
 This part of code calls the **IDCS** to validate **clientID** and **secretID** to obtain the **JWT** token. A JWT can be decoded into a JSON string, in this case, without signature, but the signature can be verified easily with a certificate. 
 
 ```python
-            auth = clientID + ":" + secretID
-            auth_bytes = auth.encode("ascii")
-            auth_base64_bytes = base64.b64encode(auth_bytes)
-            auth_base64_message = auth_base64_bytes.decode("ascii")
+auth = clientID + ":" + secretID
+auth_bytes = auth.encode("ascii")
+auth_base64_bytes = base64.b64encode(auth_bytes)
+auth_base64_message = auth_base64_bytes.decode("ascii")
 
-            headers = {"Authorization": "Basic " + auth_base64_message, "Content-Type": "application/x-www-form-urlencoded"}
+headers = {"Authorization": "Basic " + auth_base64_message, "Content-Type": "application/x-www-form-urlencoded"}
 
-            scope = "xxxxxxxxxxxxxxxxxxxx.apigateway.us-ashburn-1.oci.customer-oci.com/super-scope"
-            grant_type = "client_credentials"
+scope = "xxxxxxxxxxxxxxxxxxxx.apigateway.us-ashburn-1.oci.customer-oci.com/super-scope"
+grant_type = "client_credentials"
 
-            body = {"scope": scope, "grant_type": grant_type}
+body = {"scope": scope, "grant_type": grant_type}
 
-            url_post = "https://idcs-xxxxxxxxxxxxxxxxxxxxxxx.identity.oraclecloud.com/oauth2/v1/token"
-            post_response = requests.post(url_post, headers=headers, data=body)
+url_post = "https://idcs-xxxxxxxxxxxxxxxxxxxxxxx.identity.oraclecloud.com/oauth2/v1/token"
+post_response = requests.post(url_post, headers=headers, data=body)
 
-            jwtTokenDecoded = jwt.decode(post_response.json()['access_token'], options={"verify_signature": False})
+jwtTokenDecoded = jwt.decode(post_response.json()['access_token'], options={"verify_signature": False})
 
 ```
 
 This is the final part, where all the data will be returned with code **200**. You can return all the information needed to your application and these part of code validates the authentication or not, resulting in code 200 (authorized/success) or 401 (unauthorized).
 
 ```python
-            return response.Response(
-                ctx,
-                status_code=200,
-                response_data=json.dumps({"active": True, "principal": "foo", "scope": "bar", "clientId": "1234", "expiresAt": expiresAt, "context": {"username": "wally", "token": post_response.json()['access_token'], "jwtTokenDecoded": jwtTokenDecoded, "objectID": preauthstr}})
-            )
+    return response.Response(
+        ctx,
+        status_code=200,
+        response_data=json.dumps({"active": True, "principal": "foo", "scope": "bar", "clientId": "1234", "expiresAt": expiresAt, "context": {"username": "wally", "token": post_response.json()['access_token'], "jwtTokenDecoded": jwtTokenDecoded, "objectID": preauthstr}})
+    )
 
-        except (Exception, ValueError) as ex:
-            logging.getLogger().info('error parsing json payload: ' + str(ex))
-            pass
+except (Exception, ValueError) as ex:
+    logging.getLogger().info('error parsing json payload: ' + str(ex))
+    pass
 
-        return response.Response(
-            ctx,
-            status_code=401,
-            response_data=json.dumps({"active": False, "wwwAuthenticate": "API-key"})
-        )
+return response.Response(
+    ctx,
+    status_code=401,
+    response_data=json.dumps({"active": False, "wwwAuthenticate": "API-key"})
+)
 
 
 
