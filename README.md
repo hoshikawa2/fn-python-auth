@@ -238,6 +238,10 @@ OCI API Gateway can deploy an API as a OCI function. As you saw previously, the 
 ![2](./images/API-Gateway-2.png)
 ![3](./images/API-Gateway-3.png)
 
+After save your deployment, you can get the REST endpoint here. Remember that the complete endpoint for your Object Storage REST API service is this endpoint plus the "/" at the end (you declared / as your path previously)
+
+![api-endpoint](./images/api-endpoint.png)
+
 ### Task 3: Configure an application in IDCS
 
 You can configure any REST API External Identity Provider to work with JWT like **Auth0** and **OCI IDCS**. 
