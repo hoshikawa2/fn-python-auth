@@ -309,3 +309,7 @@ You can configure the dashboard query like this:
 * [Create a JWT Token in Java for Oracle IDCS](https://www.ateam-oracle.com/post/create-a-jwt-token-in-java-for-oracle-idcs)
 * [Object Storage Metrics](https://docs.oracle.com/pt-br/iaas/Content/Object/Reference/objectstoragemetrics.htm)
 * [Monitoring Query Language (MQL) Reference](https://docs.oracle.com/pt-br/iaas/Content/Monitoring/Reference/mql.htm)
+
+### Acknowledgments
+
+* **Author** - Cristiano Hoshikawa (Oracle LAD A-Team Solution Engineer)
