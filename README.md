@@ -19,6 +19,7 @@ The objective of this demo is:
 ### Prerequisites
 
 You need:
+- An OCI Object Storage bucket created and configured with policies you need to write and read files (see in the References section [Object Storage Security](https://docs.oracle.com/en-us/iaas/Content/Security/Reference/objectstorage_security.htm))
 - An operational Oracle Cloud tenant: You can create a free Oracle Cloud account with US$ 300.00 for a month to try this tutorial. See [Create a Free Oracle Cloud Account](https://www.oracle.com/cloud/free/)
 - OCI CLI (Oracle Cloud Command Line Interface) installed on your local machine: This is the link to install the [OCI CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm).
 - An OCI Functions and the Policies configured for development (the example was implemented in Python, see the References section to configure fn and policies)
