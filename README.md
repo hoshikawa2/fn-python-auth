@@ -5,8 +5,7 @@
 Oracle Cloud Object Storage is a very cheap and effective way to store large or small files.
 In our demo, we will show how to configure Oracle API Gateway to implement a REST service through a function that allows, in a flexible way, to authenticate a JWT token through an external Identity Provider or the OCI itself (IDCS). Regardless of the process, you can validate the JWT token (since an attribute can be part of the file name), use OCI services through its SDK and other customizable processes.
 Furthermore, Object Storage allows working in an Event-Driven architecture, making the process execution near to real-time. You can configure events in Object Storage to trigger events, and you can also create REST services to securely, quickly, and inexpensively write to or read files from Object Storage. If you were interested to view how to implement an event driven architecture see [Process large files in Autonomous Database and Kafka with Oracle Cloud Infrastructure Data Flow
-](https://docs.oracle.com/en/learn/oci-dataflow-adw-kafka/#introduction)
- 
+](https://docs.oracle.com/en/learn/oci-dataflow-adw-kafka/#introduction) 
 
 ![Architecture](./images/architecture.png)
 
