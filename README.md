@@ -203,6 +203,14 @@ preauthstr = str(preauth.data)
 
 ```
 
+The OCI SDK can support the Object Storage for many services, like read and/or write a file, list content of a bucket and others. You can, for example, enable the consumer to list all the content of a bucket with:
+
+```python
+details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name="data", access_type="AnyObjectReadWrite", bucket_listing_action="ListObjects", time_expires=expiresAt)
+
+preauth = object_storage.create_preauthenticated_request(namespace_name=namespace, bucket_name="data", create_preauthenticated_request_details=details)
+```
+
 This part of code calls the **IDCS** to validate **clientID** and **secretID** to obtain the **JWT** token. A JWT can be decoded into a JSON string, in this case, without signature, but the signature can be verified easily with a certificate. 
 
 ```python
