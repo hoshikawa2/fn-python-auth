@@ -275,7 +275,7 @@ You can test the application with **CURL** or in **Postman**:
 ```bash
 curl --location 'https://xxxxxxxxxxxxxxxxxxx.apigateway.us-ashburn-1.oci.customer-oci.com/dummyauthorizer/' \
 --header 'Content-Type: text/plain' \
---data '{"clientID": "e3exxxxxxxxxxxxxxxxxc2f", "secretID": "8exxxxxxx-fa5e-xxcf-8xxxc-xxxxxxxxxxx87", "objectID": "calico.yaml"}'
+--data '{"clientID": "e3exxxxxxxxxxxxxxxxxc2f", "secretID": "8exxxxxxx-fa5e-xxcf-8xxxc-xxxxxxxxxxx87"}'
 ```
 
 ![postman-test](./images/postman-test.png)
@@ -293,9 +293,16 @@ You can download the file following the example:
 
     https://objectstorage.us-ashburn-1.oraclecloud.com/p/eL5C0R0luN_cTNn-vUF7_Dx_z2N4w7IXemKr5y61cSRxZZPRXcR2Yj1dNCaJBDK8/n/idavixsf5sbx/b/data/o/calico.yaml
 
-    So you can download your file with this command line:
+    So you can download, upload or view the bucket files with this command line:
 
-    wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/eL5C0R0luN_cTNn-vUF7_Dx_z2N4w7IXemKr5y61cSRxZZPRXcR2Yj1dNCaJBDK8/n/idavixsf5sbx/b/data/o/calico.yaml
+    TO UPLOAD A FILE
+    curl https://objectstorage.us-ashburn-1.oraclecloud.com/p/HoPudIF45Bj6J5-Qy3J1D9dOplLuKtECRFhvOTkKAtBjJXkOTDx0Pt8gXbOOEoRx/n/idavixsf5sbx/b/data/o/ --upload-file func.py
+    
+    TO DOWNLOAD A FILE
+    curl https://objectstorage.us-ashburn-1.oraclecloud.com/p/3ZyXd6PchrTFrp1oxmedamSG1ojwQa3BxPUyonAA-q1mf3QAe5STpDrt89eYITPf/n/idavixsf5sbx/b/data/o/func.py
+    
+    TO LIST BUCKET
+    curl https://objectstorage.us-ashburn-1.oraclecloud.com/p/ODVRMB71kD0SHWuoY4ojVd93nmIiy8u0zrxA56T7FBaohAgA7k8KOLAIlhxjcveE/n/idavixsf5sbx/b/data/o/ 
 
 ### Task 5: Observability
 
