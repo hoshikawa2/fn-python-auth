@@ -7,7 +7,7 @@ In our demo, we will show how to configure Oracle API Gateway to implement a RES
 Furthermore, Object Storage allows working in an Event-Driven architecture, making the process execution near to real-time. You can configure events in Object Storage to trigger events, and you can also create REST services to securely, quickly, and inexpensively write to or read files from Object Storage. If you are interested in seeing how to implement an event-driven architecture see [Process large files in Autonomous Database and Kafka with Oracle Cloud Infrastructure Data Flow](https://docs.oracle.com/en/learn/oci-dataflow-adw-kafka/#introduction) 
 
 ![Architecture](./images/architecture.png)
-
+![API Gateway Integration](./images/apigw-integration.png)
 ### Objectives
 
 The objective of this demo is:
