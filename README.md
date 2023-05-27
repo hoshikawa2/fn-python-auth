@@ -90,6 +90,9 @@ def handler(ctx, data: io.BytesIO = None):
             clientID = auth_token.get("clientID")
             objectID = auth_token.get("objectID")
 
+            details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name="data", access_type="AnyObjectReadWrite", bucket_listing_action="ListObjects", time_expires=expiresAt)
+            
+            preauth = object_storage.create_preauthenticated_request(namespace_name=namespace, bucket_name="data", create_preauthenticated_request_details=details)
             preauthstr = str(preauth.data)
 
             auth = clientID + ":" + secretID
