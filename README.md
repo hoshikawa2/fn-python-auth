@@ -90,8 +90,8 @@ def handler(ctx, data: io.BytesIO = None):
             clientID = auth_token.get("clientID")
             objectID = auth_token.get("objectID")
 
-            details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name=objectID, access_type="ObjectRead", object_name=objectID, time_expires=expiresAt)
-
+            details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name="data", access_type="AnyObjectReadWrite", bucket_listing_action="ListObjects", time_expires=expiresAt)
+            
             preauth = object_storage.create_preauthenticated_request(namespace_name=namespace, bucket_name="data", create_preauthenticated_request_details=details)
             preauthstr = str(preauth.data)
 
@@ -193,22 +193,14 @@ try:
     objectID = auth_token.get("objectID")
 ```
 
-A pre-authenticated **URL** will be generated in this part of code. The variable **bucket_name** contains the name of the bucket in the **Object Storage** created previously and **time_expires** represents the date and time expiration to download the file.
-
-```python
-details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name=objectID, access_type="ObjectRead", object_name=objectID, time_expires=expiresAt)
-
-preauth = object_storage.create_preauthenticated_request(namespace_name=namespace, bucket_name="data", create_preauthenticated_request_details=details)
-preauthstr = str(preauth.data)
-
-```
-
 The [OCI SDK](https://docs.oracle.com/en-us/iaas/tools/python/latest/api/object_storage.html) can support the Object Storage for many services, like read and/or write a file, list content of a bucket and others. You can, for example, enable the consumer to list all the content of a bucket with:
+A pre-authenticated **URL** will be generated in this part of code. The variable **bucket_name** contains the name of the bucket in the **Object Storage** created previously and **time_expires** represents the date and time expiration to download the file.
 
 ```python
 details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name="data", access_type="AnyObjectReadWrite", bucket_listing_action="ListObjects", time_expires=expiresAt)
 
 preauth = object_storage.create_preauthenticated_request(namespace_name=namespace, bucket_name="data", create_preauthenticated_request_details=details)
+preauthstr = str(preauth.data)
 ```
 
 This part of code calls the **IDCS** to validate **clientID** and **secretID** to obtain the **JWT** token. A JWT can be decoded into a JSON string, in this case, without signature, but the signature can be verified easily with a certificate. 
