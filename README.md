@@ -203,7 +203,7 @@ preauthstr = str(preauth.data)
 
 ```
 
-The OCI SDK can support the Object Storage for many services, like read and/or write a file, list content of a bucket and others. You can, for example, enable the consumer to list all the content of a bucket with:
+The [OCI SDK](https://docs.oracle.com/en-us/iaas/tools/python/latest/api/object_storage.html) can support the Object Storage for many services, like read and/or write a file, list content of a bucket and others. You can, for example, enable the consumer to list all the content of a bucket with:
 
 ```python
 details = oci.object_storage.models.CreatePreauthenticatedRequestDetails(name="data", access_type="AnyObjectReadWrite", bucket_listing_action="ListObjects", time_expires=expiresAt)
