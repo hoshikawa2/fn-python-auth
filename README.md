@@ -267,8 +267,10 @@ You can test the application with **CURL** or in **Postman**:
 ```bash
 curl --location 'https://xxxxxxxxxxxxxxxxxxx.apigateway.us-ashburn-1.oci.customer-oci.com/dummyauthorizer/' \
 --header 'Content-Type: text/plain' \
---data '{"clientID": "e3exxxxxxxxxxxxxxxxxc2f", "secretID": "8exxxxxxx-fa5e-xxcf-8xxxc-xxxxxxxxxxx87"}'
+--data '{"clientID": "e3exxxxxxxxxxxxxxxxxc2f", "secretID": "8exxxxxxx-fa5e-xxcf-8xxxc-xxxxxxxxxxx87", "objectID": "any-file.txt"}'
 ```
+
+>**Note**: The attibute **"objectID"** is used here just to illustrate the Observability and how to show status on the **Trace Explorer** in OCI Console.
 
 ![postman-test](./images/postman-test.png)
 
