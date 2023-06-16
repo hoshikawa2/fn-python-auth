@@ -158,7 +158,7 @@ def handler(ctx, data: io.BytesIO = None):
 This is the **OCI APM Console** view for the code.
 And you can find your files with queries like:
 
-- **ServiceName** = 'Status: Load File' and **OperationName** = '50 - DR-HA OIC.pdf'
+- **ServiceName** = 'Status: Load File' and **objectID** = '50 - DR-HA OIC.pdf'
 
 
 ![zipkin-oci](./images/zipkin-oci.png)
