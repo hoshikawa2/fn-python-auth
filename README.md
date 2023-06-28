@@ -34,6 +34,8 @@ In this demo, we will work with **OCI IDCS** and call the authentication inside 
 Basically, you need to create an Application in the IDCS, in the example, called **my-client-app**. You need to select **Client Credentials** and **JWT Assertion** options.
 Visit the References section [Protect Apis with API Gateway using IDCS/IAM JWT with Scopes and Claims](https://blogs.oracle.com/coretec/post/protect-apis-with-api-gateway-using-idcsiam-jwt-with-scopes-and-claims) to view how to configure with more details. 
 
+>**Note**: This authentication example only reflects a hypothetical situation to identify the user and other information about the bucket. This may not reflect the best way to authenticate and authorize an application and is recommended to be evaluated against your company's standards.
+
 ![5](./images/IDCS-App.png)
 
 Save and activate your application. You can get the **clientID** and **secretID** to use in the next section.
